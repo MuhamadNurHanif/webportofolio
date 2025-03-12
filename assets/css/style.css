@@ -870,11 +870,11 @@ img {
 
 /*==================== FOOTER ====================*/
 .footer {
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 .footer__container {
-  row-gap: 3.5rem;
+  row-gap: 2rem;
 }
 
 .footer__bg {
