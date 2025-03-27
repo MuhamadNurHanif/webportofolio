@@ -542,7 +542,7 @@ img {
 }
 
 .skills__mysql {
-  width: 72%;
+  width: 100%;
 }
 
 .skills__node {
@@ -580,7 +580,7 @@ img {
 }
 
 .skills__git {
-  width: 80%;
+  width: 100%;
   background-color: #f1502f; /* Warna Git */
 }
 
@@ -590,7 +590,7 @@ img {
 }
 
 .skills__vscode {
-  width: 90%;
+  width: 100%;
   background-color: #007acc; /* Warna VS Code */
 }
 
