@@ -436,6 +436,26 @@ body.dark-theme .header.scroll-header {
   width: 175px;
 }
 
+.home__img {
+  justify-self: center;
+  align-self: center;
+}
+
+.home__profile-img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 12px 32px hsla(217, 91%, 60%, 0.25);
+  border: 4px solid var(--container-color);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.home__profile-img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px hsla(217, 91%, 60%, 0.35);
+}
+
 .home__data {
   grid-column: 1/3;
 }
@@ -644,7 +664,8 @@ body.dark-theme .availability-badge {
 
 /*==================== ABOUT ====================*/
 .about__img {
-  width: 240px;
+  width: 100%;
+  max-width: 360px;
   border-radius: var(--radius-xl);
   justify-self: center;
   align-self: center;
