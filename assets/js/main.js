@@ -27,6 +27,14 @@ function linkAction() {
     navMenu.classList.remove('show-menu')
 }
 navLink.forEach(n => n.addEventListener('click', linkAction))
+
+/*==================== REMOVE MENU ON SCROLL ====================*/
+window.addEventListener('scroll', () => {
+    const navMenu = document.getElementById('nav-menu')
+    if (navMenu.classList.contains('show-menu')) {
+        navMenu.classList.remove('show-menu')
+    }
+})
 /*==================== ACCORDION SKILLS ====================*/
 const skillsContent = document.getElementsByClassName('skills__content'),
     skillsHeader = document.querySelectorAll('.skills__header')
