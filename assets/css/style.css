@@ -442,10 +442,9 @@ body.dark-theme .header.scroll-header {
 }
 
 .home__profile-img {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  object-fit: cover;
+  width: 100%;
+  max-width: 280px;
+  border-radius: var(--radius-xl);
   box-shadow: 0 12px 32px hsla(217, 91%, 60%, 0.25);
   border: 4px solid var(--container-color);
   transition: transform var(--transition-base), box-shadow var(--transition-base);
@@ -665,10 +664,8 @@ body.dark-theme .availability-badge {
 /*==================== ABOUT ====================*/
 .about__img {
   width: 100%;
-  max-width: 360px;
+  max-width: 100%;
   border-radius: var(--radius-xl);
-  justify-self: center;
-  align-self: center;
   box-shadow: var(--shadow-lg);
   position: relative;
   transition: transform var(--transition-slow), box-shadow var(--transition-slow);
