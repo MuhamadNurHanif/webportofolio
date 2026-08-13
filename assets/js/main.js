@@ -32,13 +32,15 @@ const skillsContent = document.getElementsByClassName('skills__content'),
     skillsHeader = document.querySelectorAll('.skills__header')
 
 function toggleSkills() {
-    let itemClass = this.parentNode.className
+    let isOpen = this.parentNode.classList.contains('skills__open');
 
-    for (i = 0; i < skillsContent.length; i++) {
-        skillsContent[i].className = 'skills__content skills__close'
+    for (let i = 0; i < skillsContent.length; i++) {
+        skillsContent[i].classList.remove('skills__open');
+        skillsContent[i].classList.add('skills__close');
     }
-    if (itemClass === 'skills__content skills__close') {
-        this.parentNode.className = 'skills__content skills__open'
+    if (!isOpen) {
+        this.parentNode.classList.remove('skills__close');
+        this.parentNode.classList.add('skills__open');
     }
 }
 
