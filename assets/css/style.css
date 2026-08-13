@@ -297,15 +297,16 @@ body.dark-theme .header.scroll-header {
 @media screen and (max-width: 767px) {
   .nav__menu {
     position: fixed;
-    bottom: -100%;
+    top: -100%;
     left: 0;
     width: 100%;
     background-color: var(--container-color);
-    padding: 2.5rem 1.5rem 4rem;
-    box-shadow: 0 -4px 32px hsla(220, 40%, 10%, 0.12);
-    border-radius: 2rem 2rem 0 0;
-    transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-top: 1px solid var(--border-color);
+    padding: 4rem 1.5rem 3rem;
+    box-shadow: 0 4px 32px hsla(220, 40%, 10%, 0.12);
+    border-radius: 0 0 1.5rem 1.5rem;
+    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
   }
 }
 
@@ -339,7 +340,7 @@ body.dark-theme .header.scroll-header {
 .nav__close {
   position: absolute;
   right: 1.5rem;
-  bottom: 0.75rem;
+  top: 1.25rem;
   font-size: 1.75rem;
   cursor: pointer;
   color: var(--title-color);
@@ -351,7 +352,7 @@ body.dark-theme .header.scroll-header {
 }
 
 .show-menu {
-  bottom: 0 !important;
+  top: 0 !important;
 }
 
 /* Active link */
