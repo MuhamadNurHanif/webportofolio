@@ -1,0 +1,123 @@
+﻿/*==================== GOOGLE FONTS ====================*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+/*==================== VARIABLES CSS ====================*/
+:root {
+  --header-height: 4rem;
+
+  /*========== Colors ==========*/
+  --hue-color: 225;
+
+  --accent: hsl(217, 91%, 60%);
+  --accent-dark: hsl(217, 91%, 50%);
+  --accent-light: hsl(217, 91%, 70%);
+  --accent-glow: hsla(217, 91%, 60%, 0.25);
+
+  --first-color: hsl(217, 91%, 60%);
+  --first-color-second: hsl(217, 91%, 60%);
+  --first-color-alt: hsl(217, 91%, 50%);
+  --first-color-lighter: hsl(217, 92%, 88%);
+
+  --title-color: hsl(222, 47%, 11%);
+  --text-color: hsl(220, 14%, 40%);
+  --text-color-light: hsl(220, 10%, 60%);
+  --text-muted: hsl(220, 9%, 70%);
+
+  --input-color: hsl(220, 30%, 96%);
+  --body-color: hsl(220, 26%, 97%);
+  --container-color: #ffffff;
+  --surface-color: hsl(220, 20%, 98%);
+  --border-color: hsl(220, 20%, 90%);
+
+  --scroll-bar-color: hsl(220, 12%, 90%);
+  --scroll-thumb-color: hsl(220, 12%, 78%);
+
+  /*========== Shadows ==========*/
+  --shadow-sm: 0 1px 3px hsla(220, 40%, 10%, 0.06), 0 1px 2px hsla(220, 40%, 10%, 0.04);
+  --shadow-md: 0 4px 12px hsla(220, 40%, 10%, 0.08), 0 2px 4px hsla(220, 40%, 10%, 0.04);
+  --shadow-lg: 0 12px 32px hsla(220, 40%, 10%, 0.10), 0 4px 8px hsla(220, 40%, 10%, 0.06);
+  --shadow-accent: 0 8px 24px hsla(217, 91%, 60%, 0.28);
+
+  /*========== Font and typography ==========*/
+  --body-font: "Inter", sans-serif;
+  --heading-font: "Space Grotesk", sans-serif;
+
+  --big-font-size: 2.25rem;
+  --h1-font-size: 1.75rem;
+  --h2-font-size: 1.375rem;
+  --h3-font-size: 1.125rem;
+  --normal-font-size: 0.9375rem;
+  --small-font-size: 0.8125rem;
+  --smaller-font-size: 0.75rem;
+
+  /*========== Font weight ==========*/
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  --font-bold: 700;
+
+  /*========== Spacing ==========*/
+  --mb-0-25: 0.25rem;
+  --mb-0-5: 0.5rem;
+  --mb-0-75: 0.75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
+
+  /*========== Border Radius ==========*/
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+
+  /*========== Transitions ==========*/
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Font size progressive scaling for different devices */
+@media screen and (min-width: 568px) {
+  :root {
+    --big-font-size: 2.5rem;
+    --h1-font-size: 1.625rem;
+    --h2-font-size: 1.375rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: 0.9375rem;
+    --small-font-size: 0.8125rem;
+    --smaller-font-size: 0.75rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --big-font-size: 2.75rem;
+    --h1-font-size: 1.875rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 0.9375rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.8125rem;
+  }
+}
+
+@media screen and (min-width: 968px) {
+  :root {
+    --big-font-size: 3.25rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.75rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.8125rem;
+  }
+}
