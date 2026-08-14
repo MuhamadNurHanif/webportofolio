@@ -2029,7 +2029,6 @@ body.dark-theme .availability-badge {
 
   .contact__form {
     grid-column: 1;
-    display: block;
   }
 }
 
@@ -2114,7 +2113,6 @@ body.dark-theme .availability-badge {
 
 .contact__form {
   grid-column: 1;
-  display: block;
 }
 
 /* Contact section elements visibility */
