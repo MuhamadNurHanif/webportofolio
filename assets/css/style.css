@@ -1709,7 +1709,7 @@ body.dark-theme .availability-badge {
   background-color: var(--surface-color);
   border: 1.5px solid var(--border-color);
   border-radius: var(--radius-md);
-  padding: 0.875rem 1rem 0.625rem;
+  padding: 0.75rem 1rem 0.25rem;
   transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
@@ -1723,7 +1723,7 @@ body.dark-theme .availability-badge {
   color: var(--text-color-light);
   font-weight: var(--font-medium);
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
 }
 
 .contact__input {
@@ -1734,8 +1734,7 @@ body.dark-theme .availability-badge {
   font-size: var(--normal-font-size);
   border: none;
   outline: none;
-  min-height: 48px;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0 0.5rem 0;
 }
 
 .contact__input[type="textarea"],
@@ -1999,7 +1998,7 @@ body.dark-theme .availability-badge {
   }
 
   .contact__input {
-    min-height: 44px;
+    /* No explicit min-height needed anymore */
   }
 
   .button {
