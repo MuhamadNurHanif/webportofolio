@@ -160,6 +160,182 @@ body {
   color: var(--text-color);
   line-height: 1.7;
   transition: background-color var(--transition-slow), color var(--transition-slow);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/*==================== BACKGROUND ANIMATIONS ====================*/
+.bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: float-orb 20s infinite ease-in-out;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.bg-orb:nth-child(1) {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, var(--first-color), var(--accent-light));
+  top: -200px;
+  right: -200px;
+  animation-delay: 0s;
+}
+
+.bg-orb:nth-child(2) {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, var(--accent-dark), var(--first-color));
+  bottom: -150px;
+  left: -150px;
+  animation-delay: -5s;
+  animation-duration: 25s;
+}
+
+.bg-orb:nth-child(3) {
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(135deg, var(--accent-light), var(--first-color));
+  top: 50%;
+  left: 50%;
+  animation-delay: -10s;
+  animation-duration: 18s;
+}
+
+@keyframes float-orb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+/* Section-specific ambient backgrounds */
+.section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Home section glow */
+.home::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse-glow 4s infinite ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+/* Skills section floating particles */
+.skills::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--accent-glow) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, var(--accent-glow) 1px, transparent 1px);
+  background-size: 100px 100px;
+  opacity: 0.4;
+  animation: particle-float 15s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes particle-float {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
+}
+
+/* Portfolio section subtle gradient animation */
+.portfolio::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, var(--accent-glow), transparent);
+  background-size: 200% 200%;
+  opacity: 0.05;
+  animation: gradient-shift 10s ease infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Contact section ambient glow */
+.contact::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: ambient-pulse 6s infinite ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes ambient-pulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.3);
+  }
 }
 
 h1, h2, h3, h4 {
@@ -185,6 +361,8 @@ img {
 /*==================== REUSABLE CSS CLASSES ====================*/
 .section {
   padding: 5rem 0 3rem;
+  position: relative;
+  z-index: 1;
 }
 
 .section__title {
@@ -249,6 +427,19 @@ img {
 
 body.dark-theme .header.scroll-header {
   background-color: hsla(222, 30%, 8%, 0.88);
+}
+
+/* Dark theme background animations */
+body.dark-theme .bg-orb {
+  opacity: 0.08;
+}
+
+body.dark-theme .home::before {
+  opacity: 0.2;
+}
+
+body.dark-theme .skills::after {
+  opacity: 0.3;
 }
 
 /*==================== NAV ====================*/
