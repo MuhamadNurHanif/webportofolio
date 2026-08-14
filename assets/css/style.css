@@ -212,6 +212,12 @@ body {
 .section {
   position: relative;
   z-index: 1;
+  min-height: auto;
+}
+
+/* Ensure contact section has higher z-index */
+.contact.section {
+  z-index: 2;
 }
 
 h1, h2, h3, h4 {
@@ -245,6 +251,8 @@ img {
   color: var(--title-color);
   font-weight: var(--font-bold);
   letter-spacing: -0.02em;
+  position: relative;
+  z-index: 2;
 }
 
 .section__subtitle {
@@ -255,6 +263,8 @@ img {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .section__title,
@@ -419,6 +429,42 @@ body.dark-theme #particleCanvas {
   .nav__link:hover .nav__icon,
   .nav__link.active-link .nav__icon {
     transform: scale(1.1);
+  }
+
+  /* Contact section mobile fixes */
+  .contact.section {
+    padding: 4rem 0 2rem;
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+  }
+
+  .contact__container {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .contact__form {
+    grid-column: 1 !important;
+    padding: 1.5rem;
+  }
+
+  .contact__information {
+    padding: 1rem;
+    flex-direction: row;
+  }
+
+  .contact__icon-box {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .contact__icon {
+    font-size: 1.25rem;
+  }
+
+  .contact__inputs {
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -1404,6 +1450,8 @@ body.dark-theme .availability-badge {
 /*==================== CONTACT ME ====================*/
 .contact__container {
   row-gap: 2.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .contact__info-wrapper {
@@ -1423,6 +1471,8 @@ body.dark-theme .availability-badge {
   box-shadow: var(--shadow-sm);
   transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
   text-decoration: none;
+  position: relative;
+  z-index: 2;
 }
 
 .contact__information:hover {
@@ -1466,6 +1516,9 @@ body.dark-theme .availability-badge {
   border-radius: var(--radius-xl);
   padding: 2rem;
   box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 2;
+  overflow: visible;
 }
 
 .contact__content {
@@ -1497,6 +1550,13 @@ body.dark-theme .availability-badge {
   font-size: var(--normal-font-size);
   border: none;
   outline: none;
+  min-height: 40px;
+}
+
+.contact__input[type="textarea"],
+.contact__input textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
 .contact__input::placeholder {
@@ -1686,6 +1746,23 @@ body.dark-theme .availability-badge {
     width: 42px;
     height: 42px;
     font-size: 1.5rem;
+  }
+
+  /* Ensure contact section is visible on mobile */
+  .contact.section {
+    position: relative;
+    z-index: 2;
+    min-height: auto;
+    padding: 4rem 0 2rem;
+  }
+
+  .contact__container {
+    grid-template-columns: 1fr !important;
+    row-gap: 2rem;
+  }
+
+  .contact__form {
+    grid-column: 1 !important;
   }
 }
 
