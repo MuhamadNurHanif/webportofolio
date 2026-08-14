@@ -339,31 +339,86 @@ body.dark-theme #particleCanvas {
 
 .nav__toggle {
   color: var(--title-color);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.4rem;
+  padding: 0.6rem;
   border-radius: var(--radius-md);
-  transition: color var(--transition-base), background-color var(--transition-base);
+  transition: all var(--transition-base);
+  background-color: var(--accent-glow);
+  border: 1px solid var(--border-color);
 }
 
 .nav__toggle:hover {
   color: var(--first-color);
-  background-color: var(--accent-glow);
+  background-color: var(--first-color);
+  border-color: var(--first-color);
+  transform: scale(1.05);
+}
+
+.nav__toggle i {
+  display: block;
+  transition: transform var(--transition-base);
+}
+
+.nav__toggle:hover i {
+  transform: rotate(180deg);
 }
 
 @media screen and (max-width: 767px) {
   .nav__menu {
     position: fixed;
-    top: -100%;
+    top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--container-color);
-    padding: 4rem 1.5rem 3rem;
+    height: 100vh;
+    background-color: hsla(220, 26%, 97%, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 5rem 1.5rem 2rem;
     box-shadow: 0 4px 32px hsla(220, 40%, 10%, 0.12);
-    border-radius: 0 0 1.5rem 1.5rem;
-    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-bottom: 1px solid var(--border-color);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 100;
+    transform: translateY(-100%);
+    overflow-y: auto;
+  }
+
+  body.dark-theme .nav__menu {
+    background-color: hsla(222, 30%, 8%, 0.98);
+  }
+
+  .nav__list {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .nav__link {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    font-size: var(--normal-font-size);
+    border-radius: var(--radius-md);
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-base);
+  }
+
+  .nav__link:hover,
+  .nav__link.active-link {
+    background-color: var(--accent-glow);
+    border-color: var(--first-color);
+    transform: translateX(4px);
+  }
+
+  .nav__icon {
+    font-size: 1.5rem;
+  }
+
+  .nav__link:hover .nav__icon,
+  .nav__link.active-link .nav__icon {
+    transform: scale(1.1);
   }
 }
 
@@ -398,18 +453,35 @@ body.dark-theme #particleCanvas {
   position: absolute;
   right: 1.5rem;
   top: 1.25rem;
-  font-size: 1.75rem;
+  font-size: 2rem;
   cursor: pointer;
   color: var(--title-color);
-  transition: color var(--transition-base);
+  transition: color var(--transition-base), transform var(--transition-base);
+  z-index: 101;
+  padding: 0.5rem;
+  background-color: var(--accent-glow);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav__close:hover {
   color: var(--first-color);
+  transform: scale(1.1) rotate(90deg);
 }
 
 .show-menu {
-  top: 0 !important;
+  transform: translateY(0) !important;
+}
+
+/* Prevent body scroll when menu is open on mobile */
+@media screen and (max-width: 767px) {
+  body.show-menu-open {
+    overflow: hidden;
+  }
 }
 
 /* Active link */
@@ -1557,18 +1629,28 @@ body.dark-theme .availability-badge {
 
 /*==================== MEDIA QUERIES ====================*/
 /* For small devices */
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 400px) {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
   .nav__menu {
-    padding: 2rem 0.5rem 4rem;
+    padding: 5rem 1rem 2rem;
   }
 
   .nav__list {
-    column-gap: 0;
+    max-width: 100%;
+    gap: 0.5rem;
+  }
+
+  .nav__link {
+    padding: 0.875rem 1rem;
+    font-size: var(--small-font-size);
+  }
+
+  .nav__icon {
+    font-size: 1.25rem;
   }
 
   .home__content {
@@ -1577,6 +1659,10 @@ body.dark-theme .availability-badge {
 
   .home__blob {
     width: 180px;
+  }
+
+  .home__profile-img {
+    max-width: 200px;
   }
 
   .skills__title {
@@ -1594,6 +1680,12 @@ body.dark-theme .availability-badge {
   .about_info {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .nav__close {
+    width: 42px;
+    height: 42px;
+    font-size: 1.5rem;
   }
 }
 

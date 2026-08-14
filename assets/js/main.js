@@ -7,6 +7,7 @@ const navMenu = document.getElementById('nav-menu'),
 if (navToggle) {
     navToggle.addEventListener('click', () => {
         navMenu.classList.add('show-menu')
+        document.body.classList.add('show-menu-open')
     })
 }
 
@@ -15,6 +16,7 @@ if (navToggle) {
 if (navClose) {
     navClose.addEventListener('click', () => {
         navMenu.classList.remove('show-menu')
+        document.body.classList.remove('show-menu-open')
     })
 }
 
@@ -25,6 +27,7 @@ function linkAction() {
     const navMenu = document.getElementById('nav-menu')
     // When we click on each nav__link, we remove the show-menu class
     navMenu.classList.remove('show-menu')
+    document.body.classList.remove('show-menu-open')
 }
 navLink.forEach(n => n.addEventListener('click', linkAction))
 
@@ -33,6 +36,7 @@ window.addEventListener('scroll', () => {
     const navMenu = document.getElementById('nav-menu')
     if (navMenu.classList.contains('show-menu')) {
         navMenu.classList.remove('show-menu')
+        document.body.classList.remove('show-menu-open')
     }
 })
 /*==================== ACCORDION SKILLS ====================*/
