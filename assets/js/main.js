@@ -402,8 +402,16 @@ function updateContent(lang) {
   const contactTitle = document.querySelector('.contact .section__title')
   const contactSubtitle = document.querySelector('.contact .section__subtitle')
 
-  if (contactTitle) contactTitle.textContent = t.contact.title
-  if (contactSubtitle) contactSubtitle.textContent = t.contact.subtitle
+  if (contactTitle) {
+    contactTitle.textContent = t.contact.title
+    contactTitle.style.display = 'block'
+    contactTitle.style.visibility = 'visible'
+  }
+  if (contactSubtitle) {
+    contactSubtitle.textContent = t.contact.subtitle
+    contactSubtitle.style.display = 'block'
+    contactSubtitle.style.visibility = 'visible'
+  }
 
   // Contact form labels
   const contactLabels = document.querySelectorAll('.contact__label')
