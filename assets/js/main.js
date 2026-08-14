@@ -188,7 +188,7 @@ const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 
 let particles = [];
-const particleCount = 50;
+const particleCount = 200;
 const connectionDistance = 150;
 
 class Particle {
