@@ -183,6 +183,257 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
 
+/*==================== LANGUAGE TOGGLE ====================*/
+const languageButton = document.getElementById('language-button')
+const langCode = languageButton?.querySelector('.lang-code')
+
+// Translations object
+const translations = {
+  id: {
+    nav: {
+      home: 'Beranda',
+      about: 'Tentang',
+      skills: 'Keahlian',
+      experience: 'Pengalaman',
+      portfolio: 'Portofolio',
+      contact: 'Kontak'
+    },
+    home: {
+      greeting: 'Halo, saya',
+      available: 'Tersedia untuk peluang baru',
+      subtitle: 'Spesialis TI & Software Engineer',
+      description: 'Spesialis IT Bersertifikat & Software Engineer dengan pengalaman 3+ tahun menghubungkan operasional jaringan, pemeliharaan hardware, dan pengembangan aplikasi full-stack.',
+      connect: 'Mari Terhubung',
+      viewCodasia: 'Lihat Codasia',
+      scrollDown: 'Gulir ke bawah'
+    },
+    about: {
+      title: 'Ringkasan Profesional',
+      subtitle: 'Latar Belakang Saya',
+      description: 'IT Support & Software Engineer dengan pengalaman ±3 tahun dalam troubleshooting jaringan dan deployment (SD-WAN, routing Ruijie, instalasi access point), instalasi dan pemeliharaan hardware, dan pemrograman full-stack (FastAPI, Laravel, Next.js, React.js).<br><br>Pengalaman lapangan yang terbukti dalam instalasi dan pemeliharaan infrastruktur jaringan di situs pemerintah dan perusahaan, menyediakan dukungan IT on-site, dan membangun sistem pendukung keputusan/perangkat lunak untuk klien industri seperti PT PLN (Persero). Junior Network Administrator Bersertifikat dengan fondasi kuat yang menghubungkan operasional jaringan, pemeliharaan hardware/perangkat lunak, dan pengembangan aplikasi.'
+    },
+    skills: {
+      title: 'Kompetensi Inti',
+      subtitle: 'Keahlian Saya'
+    },
+    experience: {
+      title: 'Pengalaman & Pendidikan',
+      subtitle: 'Perjalanan Profesional Saya',
+      work: 'Pengalaman Kerja',
+      education: 'Pendidikan'
+    },
+    portfolio: {
+      title: 'Portofolio',
+      subtitle: 'Proyek Web & Sistem Unggulan',
+      note: 'Catatan: Proyek yang ditampilkan adalah pilihan karya publik. Lebih dari 30 proyek enterprise dan perusahaan lainnya disimpan secara ketat untuk menghormati kerahasiaan klien (NDA).'
+    },
+    contact: {
+      title: 'Kontak',
+      subtitle: 'Hubungi Saya',
+      email: 'Email',
+      linkedin: 'LinkedIn',
+      whatsapp: 'WhatsApp',
+      name: 'Nama',
+      emailPlaceholder: 'Masukkan email Anda',
+      subject: 'Subjek',
+      subjectPlaceholder: 'Tentang apa ini?',
+      message: 'Pesan',
+      messagePlaceholder: 'Tulis pesan Anda di sini...',
+      send: 'Kirim Pesan'
+    }
+  },
+  en: {
+    nav: {
+      home: 'Home',
+      about: 'About',
+      skills: 'Skills',
+      experience: 'Experience',
+      portfolio: 'Portfolio',
+      contact: 'Contact'
+    },
+    home: {
+      greeting: 'Hello, I am',
+      available: 'Available for new opportunities',
+      subtitle: 'IT Specialist & Software Engineer',
+      description: 'Certified IT Specialist & Software Engineer with 3+ years bridging network operations, hardware maintenance, and full-stack application development.',
+      connect: "Let's Connect",
+      viewCodasia: 'View Codasia',
+      scrollDown: 'Scroll down'
+    },
+    about: {
+      title: 'Professional Summary',
+      subtitle: 'My Background',
+      description: 'IT Support & Software Engineer with ± 3 years of hands-on experience in network troubleshooting and deployment (SD-WAN, Ruijie routing, access point installation), hardware installation and maintenance, and full-stack programming (FastAPI, Laravel, Next.js, React.js).<br><br>Proven field experience installing and maintaining network infrastructure at government and enterprise sites, providing on-site IT support, and building software/decision-support systems for industrial clients like PT PLN (Persero). Certified Junior Network Administrator with a strong foundation bridging network operations, hardware/software maintenance, and application development.'
+    },
+    skills: {
+      title: 'Core Competencies',
+      subtitle: 'My Expertise'
+    },
+    experience: {
+      title: 'Experience & Education',
+      subtitle: 'My Professional Journey',
+      work: 'Work Experience',
+      education: 'Education'
+    },
+    portfolio: {
+      title: 'Portfolio',
+      subtitle: 'Featured Web & System Projects',
+      note: 'Note: The projects displayed are a selection of public work. More than 30 other enterprise and corporate projects are kept strictly private to respect client confidentiality (NDA).'
+    },
+    contact: {
+      title: 'Contact',
+      subtitle: 'Get In Touch',
+      email: 'Email',
+      linkedin: 'LinkedIn',
+      whatsapp: 'WhatsApp',
+      name: 'Name',
+      emailPlaceholder: 'Enter your email',
+      subject: 'Subject',
+      subjectPlaceholder: 'What is this regarding?',
+      message: 'Message',
+      messagePlaceholder: 'Write your message here...',
+      send: 'Send Message'
+    }
+  }
+}
+
+let currentLang = localStorage.getItem('language') || 'en'
+
+// Initialize language
+if (langCode) {
+  langCode.textContent = currentLang.toUpperCase()
+  updateContent(currentLang)
+}
+
+// Language toggle function
+function toggleLanguage() {
+  currentLang = currentLang === 'en' ? 'id' : 'en'
+  localStorage.setItem('language', currentLang)
+
+  if (langCode) {
+    langCode.textContent = currentLang.toUpperCase()
+  }
+
+  updateContent(currentLang)
+}
+
+// Update content based on language
+function updateContent(lang) {
+  const t = translations[lang]
+
+  // Navigation
+  document.querySelectorAll('.nav__link').forEach((link, index) => {
+    const keys = ['home', 'about', 'skills', 'experience', 'portfolio', 'contact']
+    if (keys[index]) {
+      const iconSpan = link.querySelector('.nav__icon')
+      const textContent = t.nav[keys[index]]
+      link.innerHTML = iconSpan ? `${iconSpan.outerHTML} ${textContent}` : textContent
+    }
+  })
+
+  // Home section
+  const greeting = document.querySelector('.home__greeting')
+  const available = document.querySelector('.availability-badge')
+  const homeDesc = document.querySelector('.home__description')
+  const connectBtn = document.querySelector('.home__actions .button:first-child')
+  const codasiaBtn = document.querySelector('.home__actions .button--outline')
+  const scrollName = document.querySelector('.home__scroll-name')
+
+  if (greeting) greeting.textContent = t.home.greeting
+  if (available) {
+    const dot = available.querySelector('.availability-dot')
+    available.innerHTML = `${dot.outerHTML} ${t.home.available}`
+  }
+  if (homeDesc) homeDesc.textContent = t.home.description
+  if (connectBtn) {
+    const icon = connectBtn.querySelector('.button__icon')
+    connectBtn.innerHTML = `${t.home.connect} ${icon.outerHTML}`
+  }
+  if (codasiaBtn) codasiaBtn.textContent = t.home.viewCodasia
+  if (scrollName) scrollName.textContent = t.home.scrollDown
+
+  // About section
+  const aboutTitle = document.querySelector('.about .section__title')
+  const aboutSubtitle = document.querySelector('.about .section__subtitle')
+  const aboutDesc = document.querySelector('.about__description')
+
+  if (aboutTitle) aboutTitle.textContent = t.about.title
+  if (aboutSubtitle) aboutSubtitle.textContent = t.about.subtitle
+  if (aboutDesc) aboutDesc.innerHTML = t.about.description
+
+  // Skills section
+  const skillsTitle = document.querySelector('.skills .section__title')
+  const skillsSubtitle = document.querySelector('.skills .section__subtitle')
+
+  if (skillsTitle) skillsTitle.textContent = t.skills.title
+  if (skillsSubtitle) skillsSubtitle.textContent = t.skills.subtitle
+
+  // Experience section
+  const expTitle = document.querySelector('.experience .section__title')
+  const expSubtitle = document.querySelector('.experience .section__subtitle')
+
+  if (expTitle) expTitle.textContent = t.experience.title
+  if (expSubtitle) expSubtitle.textContent = t.experience.subtitle
+
+  // Update experience content titles
+  const workTitle = document.querySelector('.services__content:first-child .services__title')
+  const eduTitle = document.querySelector('.services__content:last-child .services__title')
+
+  if (workTitle) workTitle.innerHTML = `<i class="uil uil-briefcase-alt"></i> ${t.experience.work}`
+  if (eduTitle) eduTitle.innerHTML = `<i class="uil uil-graduation-cap"></i> ${t.experience.education}`
+
+  // Portfolio section
+  const portfolioTitle = document.querySelector('.portfolio .section__title')
+  const portfolioSubtitle = document.querySelector('.portfolio .section__subtitle')
+  const portfolioNote = document.querySelector('.portfolio .container p')
+
+  if (portfolioTitle) portfolioTitle.textContent = t.portfolio.title
+  if (portfolioSubtitle) portfolioSubtitle.textContent = t.portfolio.subtitle
+  if (portfolioNote) {
+    const icon = portfolioNote.querySelector('i')
+    portfolioNote.innerHTML = `${icon.outerHTML} <strong>${t.portfolio.note.split(':')[0]}:</strong> ${t.portfolio.note.split(':')[1]}`
+  }
+
+  // Contact section
+  const contactTitle = document.querySelector('.contact .section__title')
+  const contactSubtitle = document.querySelector('.contact .section__subtitle')
+
+  if (contactTitle) contactTitle.textContent = t.contact.title
+  if (contactSubtitle) contactSubtitle.textContent = t.contact.subtitle
+
+  // Contact form labels
+  const contactLabels = document.querySelectorAll('.contact__label')
+  const contactInputs = document.querySelectorAll('.contact__input, .contact__input::placeholder')
+  const sendBtn = document.querySelector('.contact__form .button')
+
+  if (contactLabels.length >= 4) {
+    contactLabels[0].textContent = t.contact.name
+    contactLabels[1].textContent = t.contact.email
+    contactLabels[2].textContent = t.contact.subject
+    contactLabels[3].textContent = t.contact.message
+  }
+
+  if (sendBtn) {
+    const icon = sendBtn.querySelector('.button__icon')
+    sendBtn.innerHTML = `${t.contact.send} ${icon.outerHTML}`
+  }
+
+  // Contact information titles
+  const contactInfoTitles = document.querySelectorAll('.contact__title')
+  const contactInfoSubtitles = document.querySelectorAll('.contact__subtitle')
+
+  if (contactInfoTitles.length >= 3) {
+    contactInfoTitles[0].textContent = t.contact.email
+    contactInfoTitles[1].textContent = t.contact.linkedin
+    contactInfoTitles[2].textContent = t.contact.whatsapp
+  }
+}
+
+// Add event listener for language toggle
+if (languageButton) {
+  languageButton.addEventListener('click', toggleLanguage)
+}
+
 /*==================== PARTICLE BACKGROUND ANIMATION ====================*/
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');

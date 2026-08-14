@@ -121,7 +121,7 @@ body.dark-theme {
 .nav__btns {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .change-theme {
@@ -139,6 +139,38 @@ body.dark-theme {
 .change-theme:hover {
   color: var(--first-color);
   background-color: var(--accent-glow);
+}
+
+/*========== Language Toggle ==========*/
+.language-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-md);
+  background-color: var(--container-color);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-base);
+  font-family: var(--body-font);
+  font-weight: var(--font-medium);
+}
+
+.language-toggle:hover {
+  color: var(--first-color);
+  border-color: var(--first-color);
+  background-color: var(--accent-glow);
+}
+
+.lang-code {
+  font-weight: var(--font-semi-bold);
+  letter-spacing: 0.05em;
+}
+
+.language-toggle i {
+  font-size: 1rem;
 }
 
 /*==================== BASE ====================*/
