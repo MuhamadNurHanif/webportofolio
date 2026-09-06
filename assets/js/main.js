@@ -64,26 +64,36 @@ skillsHeader.forEach((el) => {
 
 
 /*==================== SERVICES MODAL ====================*/
-const modalViews = document.querySelectorAll('.services__modal'),
-    modalBtns = document.querySelectorAll('.services__button'),
-    modalCloses = document.querySelectorAll('.services__modal-close')
+const modalViews = document.querySelectorAll('.services__modal')
 
-let modal = function (modalClick) {
-    modalViews[modalClick].classList.add('active-modal')
+function openModal(index) {
+    const target = modalViews[index]
+    if (target) {
+        target.classList.add('active-modal')
+        document.body.classList.add('modal-open')
+    }
 }
 
-modalBtns.forEach((modalBtn, i) => {
-    modalBtn.addEventListener('click', () => {
-        modal(i)
-    })
+function closeModals() {
+    modalViews.forEach(modalView => modalView.classList.remove('active-modal'))
+    document.body.classList.remove('modal-open')
+}
+
+// Event delegation: works for buttons/modals regardless of load order
+document.addEventListener('click', (e) => {
+    const openBtn = e.target.closest('.services__button')
+    if (openBtn) {
+        const buttons = [...document.querySelectorAll('.services__button')]
+        openModal(buttons.indexOf(openBtn))
+        return
+    }
+    if (e.target.closest('.services__modal-close') || e.target.classList.contains('services__modal')) {
+        closeModals()
+    }
 })
 
-modalCloses.forEach((modalClose) => {
-    modalClose.addEventListener('click', () => {
-        modalViews.forEach((modalView) => {
-            modalView.classList.remove('active-modal')
-        })
-    })
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModals()
 })
 /*==================== PORTFOLIO SWIPER  ====================*/
 let swiperPortfolio = new Swiper('.portfolio__container', {
@@ -130,10 +140,13 @@ function scrollActive(){
         const sectionTop = current.offsetTop - 50;
         sectionId = current.getAttribute('id')
 
+        const link = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+        if(!link) return
+
         if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+            link.classList.add('active-link')
         }else{
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+            link.classList.remove('active-link')
         }
     })
 }
@@ -200,25 +213,36 @@ const translations = {
       skills: 'Keahlian',
       experience: 'Pengalaman',
       portfolio: 'Portofolio',
+      blog: 'Blog',
+      organization: 'Organisasi',
       contact: 'Kontak'
     },
     home: {
       greeting: 'Halo, saya',
       available: 'Tersedia untuk peluang baru',
-      subtitle: 'Spesialis TI & Software Engineer',
-      description: 'Spesialis IT Bersertifikat & Software Engineer dengan pengalaman 3+ tahun menghubungkan operasional jaringan, pemeliharaan hardware, dan pengembangan aplikasi full-stack.',
+      subtitle: 'Fullstack Web Developer',
+      description: 'Fresh graduate D-IV Teknologi Rekayasa Perangkat Lunak Politeknik Negeri Banyuwangi dengan pengalaman 2+ tahun di bidang software development melalui proyek freelance dan magang.',
       connect: 'Mari Terhubung',
-      viewCodasia: 'Lihat Codasia',
+      viewPortfolio: 'Lihat Portofolio',
       scrollDown: 'Gulir ke bawah'
     },
     about: {
       title: 'Ringkasan Profesional',
       subtitle: 'Latar Belakang Saya',
-      description: 'IT Support & Software Engineer dengan pengalaman ±3 tahun dalam troubleshooting jaringan dan deployment (SD-WAN, routing Ruijie, instalasi access point), instalasi dan pemeliharaan hardware, dan pemrograman full-stack (FastAPI, Laravel, Next.js, React.js).<br><br>Pengalaman lapangan yang terbukti dalam instalasi dan pemeliharaan infrastruktur jaringan di situs pemerintah dan perusahaan, menyediakan dukungan IT on-site, dan membangun sistem pendukung keputusan/perangkat lunak untuk klien industri seperti PT PLN (Persero). Junior Network Administrator Bersertifikat dengan fondasi kuat yang menghubungkan operasional jaringan, pemeliharaan hardware/perangkat lunak, dan pengembangan aplikasi.'
+      description: 'Fresh graduate Program Studi D-IV Teknologi Rekayasa Perangkat Lunak Politeknik Negeri Banyuwangi dengan pengalaman 2+ tahun di bidang software development melalui proyek freelance sejak semester 3 dan magang yang menggunakan berbagai teknologi.<br><br>Dinamis untuk belajar tentang hal baru dan komitmen mencapai tujuan tepat waktu dengan hasil yang berkualitas. Berpengalaman di full stack: React, Next.js, Laravel, dan FastAPI, didukung 3 sertifikasi profesional BNSP.'
     },
     skills: {
       title: 'Kompetensi Inti',
-      subtitle: 'Keahlian Saya'
+      subtitle: 'Keahlian Saya',
+      soft: 'Kompetensi Non-Teknis'
+    },
+    organization: {
+      title: 'Pengalaman Organisasi',
+      subtitle: 'Kepemimpinan & Kontribusi'
+    },
+    blog: {
+      title: 'Blog',
+      subtitle: 'Catatan & Wawasan'
     },
     experience: {
       title: 'Pengalaman & Pendidikan',
@@ -229,7 +253,7 @@ const translations = {
     portfolio: {
       title: 'Portofolio',
       subtitle: 'Proyek Web & Sistem Unggulan',
-      note: 'Catatan: Proyek yang ditampilkan adalah pilihan karya publik. Lebih dari 30 proyek enterprise dan perusahaan lainnya disimpan secara ketat untuk menghormati kerahasiaan klien (NDA).'
+      note: 'Catatan: Proyek yang ditampilkan adalah pilihan unggulan. Proyek klien lainnya dari 15+ karya freelance disimpan privat demi menghormati kerahasiaan klien (NDA).'
     },
     contact: {
       title: 'Kontak',
@@ -253,25 +277,36 @@ const translations = {
       skills: 'Skills',
       experience: 'Experience',
       portfolio: 'Portfolio',
+      blog: 'Blog',
+      organization: 'Organization',
       contact: 'Contact'
     },
     home: {
       greeting: 'Hello, I am',
       available: 'Available for new opportunities',
-      subtitle: 'IT Specialist & Software Engineer',
-      description: 'Certified IT Specialist & Software Engineer with 3+ years bridging network operations, hardware maintenance, and full-stack application development.',
+      subtitle: 'Fullstack Web Developer',
+      description: 'Fresh graduate of D-IV Software Engineering Technology at Politeknik Negeri Banyuwangi with 2+ years of software development experience through freelance projects and internships.',
       connect: "Let's Connect",
-      viewCodasia: 'View Codasia',
+      viewPortfolio: 'View Portfolio',
       scrollDown: 'Scroll down'
     },
     about: {
       title: 'Professional Summary',
       subtitle: 'My Background',
-      description: 'IT Support & Software Engineer with ± 3 years of hands-on experience in network troubleshooting and deployment (SD-WAN, Ruijie routing, access point installation), hardware installation and maintenance, and full-stack programming (FastAPI, Laravel, Next.js, React.js).<br><br>Proven field experience installing and maintaining network infrastructure at government and enterprise sites, providing on-site IT support, and building software/decision-support systems for industrial clients like PT PLN (Persero). Certified Junior Network Administrator with a strong foundation bridging network operations, hardware/software maintenance, and application development.'
+      description: 'Fresh graduate of the D-IV Software Engineering Technology study program at Politeknik Negeri Banyuwangi with 2+ years of experience in software development through freelance projects since the 3rd semester and internships using a wide range of technologies.<br><br>Dynamic in learning new things and committed to achieving goals on time with quality results. Experienced across the full stack: React, Next.js, Laravel, and FastAPI, backed by 3 BNSP professional certifications.'
     },
     skills: {
       title: 'Core Competencies',
-      subtitle: 'My Expertise'
+      subtitle: 'My Expertise',
+      soft: 'Non-Technical Skills'
+    },
+    organization: {
+      title: 'Organizational Experience',
+      subtitle: 'Leadership & Involvement'
+    },
+    blog: {
+      title: 'Blog',
+      subtitle: 'Notes & Insights'
     },
     experience: {
       title: 'Experience & Education',
@@ -282,7 +317,7 @@ const translations = {
     portfolio: {
       title: 'Portfolio',
       subtitle: 'Featured Web & System Projects',
-      note: 'Note: The projects displayed are a selection of public work. More than 30 other enterprise and corporate projects are kept strictly private to respect client confidentiality (NDA).'
+      note: 'Note: These projects are a selected showcase. Other client projects from 15+ freelance works are kept private to respect client confidentiality (NDA).'
     },
     contact: {
       title: 'Contact',
@@ -327,7 +362,7 @@ function updateContent(lang) {
 
   // Navigation
   document.querySelectorAll('.nav__link').forEach((link, index) => {
-    const keys = ['home', 'about', 'skills', 'experience', 'portfolio', 'contact']
+    const keys = ['home', 'about', 'skills', 'experience', 'portfolio', 'blog', 'organization', 'contact']
     if (keys[index]) {
       const iconSpan = link.querySelector('.nav__icon')
       const textContent = t.nav[keys[index]]
@@ -353,7 +388,7 @@ function updateContent(lang) {
     const icon = connectBtn.querySelector('.button__icon')
     connectBtn.innerHTML = `${t.home.connect} ${icon.outerHTML}`
   }
-  if (codasiaBtn) codasiaBtn.textContent = t.home.viewCodasia
+  if (codasiaBtn) codasiaBtn.textContent = t.home.viewPortfolio
   if (scrollName) scrollName.textContent = t.home.scrollDown
 
   // About section
@@ -371,6 +406,24 @@ function updateContent(lang) {
 
   if (skillsTitle) skillsTitle.textContent = t.skills.title
   if (skillsSubtitle) skillsSubtitle.textContent = t.skills.subtitle
+
+  // Soft skills
+  const softTitle = document.querySelector('.skills__soft-title')
+  if (softTitle) softTitle.textContent = t.skills.soft
+
+  // Organization section
+  const orgTitle = document.querySelector('.organization .section__title')
+  const orgSubtitle = document.querySelector('.organization .section__subtitle')
+
+  if (orgTitle) orgTitle.textContent = t.organization.title
+  if (orgSubtitle) orgSubtitle.textContent = t.organization.subtitle
+
+  // Blog section
+  const blogTitle = document.querySelector('.blog .section__title')
+  const blogSubtitle = document.querySelector('.blog .section__subtitle')
+
+  if (blogTitle) blogTitle.textContent = t.blog.title
+  if (blogSubtitle) blogSubtitle.textContent = t.blog.subtitle
 
   // Experience section
   const expTitle = document.querySelector('.experience .section__title')
