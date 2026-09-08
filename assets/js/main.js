@@ -222,7 +222,7 @@ const translations = {
       available: 'Tersedia untuk peluang baru',
       subtitle: 'Fullstack Web Developer',
       description: 'Fresh graduate D-IV Teknologi Rekayasa Perangkat Lunak Politeknik Negeri Banyuwangi dengan pengalaman 2+ tahun di bidang software development melalui proyek freelance dan magang.',
-      connect: 'Mari Terhubung',
+      connect: 'Unduh CV',
       viewPortfolio: 'Lihat Portofolio',
       scrollDown: 'Gulir ke bawah'
     },
@@ -286,7 +286,7 @@ const translations = {
       available: 'Available for new opportunities',
       subtitle: 'Fullstack Web Developer',
       description: 'Fresh graduate of D-IV Software Engineering Technology at Politeknik Negeri Banyuwangi with 2+ years of software development experience through freelance projects and internships.',
-      connect: "Let's Connect",
+      connect: 'Download CV',
       viewPortfolio: 'View Portfolio',
       scrollDown: 'Scroll down'
     },
